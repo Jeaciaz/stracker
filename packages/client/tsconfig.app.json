@@ -1,0 +1,18 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
+    "types": ["vite/client"],
+    "jsx": "preserve",
+    "jsxImportSource": "solid-js",
+    "paths": {
+      "@app/*": ["./src/app/*"],
+      "@features/*": ["./src/features/*"],
+      "@pages/*": ["./src/pages/*"],
+      "@pages": ["./src/pages/index.ts"],
+      "@shared/*": ["./src/shared/*"],
+      "@domain/*": ["../domain/src/*"]
+    }
+  },
+  "include": ["src", "global.d.ts"]
+}

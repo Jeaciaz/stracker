@@ -1,0 +1,19 @@
+{
+  "name": "server",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "bun --watch --env-file=../../.env src/server.ts",
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "@effect/platform-bun": "^0.81.1",
+    "@effect/sql": "^0.46.0"
+  }
+}

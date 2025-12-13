@@ -1,0 +1,21 @@
+{
+  "name": "stracker",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "workspaces": ["packages/*"],
+  "scripts": {
+    "dev": "bun --filter '*' dev"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "@effect/platform": "^0.92.1",
+    "@effect/schema": "^0.75.5",
+    "effect": "^3.18.4"
+  }
+}

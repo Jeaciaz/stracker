@@ -1,0 +1,11 @@
+services:
+  postgres:
+    container_name: stracker-postgres
+    image: postgres:18-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: stracker
+    ports:
+      - "5433:5432"
+    restart: unless-stopped

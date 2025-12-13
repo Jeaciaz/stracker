@@ -1,0 +1,23 @@
+@import "tailwindcss";
+@plugin "daisyui" {
+  themes: light --default, dark --prefersdark;
+}
+
+@theme {
+  --animate-scroll-shadow: scroll-shadow linear both;
+
+  @keyframes scroll-shadow {
+    from {
+      box-shadow: none;
+    }
+    to {
+      box-shadow: var(--scroll-shadow, var(--color-base-300) 0 0.5rem 1rem);
+    }
+  }
+}
+
+.animate-scroll-shadow {
+  animation-timeline: scroll(inline);
+  animation-range: 0ex 5ex;
+}
+
