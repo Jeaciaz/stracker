@@ -1,19 +1,25 @@
 {
-  "name": "server",
-  "module": "index.ts",
-  "type": "module",
-  "private": true,
-  "scripts": {
-    "dev": "bun --watch --env-file=../../.env src/server.ts",
-  },
-  "devDependencies": {
-    "@types/bun": "latest"
-  },
-  "peerDependencies": {
-    "typescript": "^5"
-  },
-  "dependencies": {
-    "@effect/platform-bun": "^0.81.1",
-    "@effect/sql": "^0.46.0"
-  }
+	"name": "server",
+	"module": "index.ts",
+	"type": "module",
+	"private": true,
+	"scripts": {
+		"dev": "bun --watch --env-file=../../.env src/server.ts"
+	},
+	"devDependencies": {
+		"@effect/sql-pg": "0.47.0",
+		"@effect/vitest": "^0.27.0",
+		"@testcontainers/postgresql": "10.28.0",
+		"@types/bun": "latest",
+		"pg": "8.13.1",
+		"vite-tsconfig-paths": "^6.0.2",
+		"vitest": "^4.0.16"
+	},
+	"peerDependencies": {
+		"typescript": "^5"
+	},
+	"dependencies": {
+		"@effect/platform-bun": "^0.81.1",
+		"@effect/sql": "^0.46.0"
+	}
 }

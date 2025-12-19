@@ -6,66 +6,66 @@ export const SpendingId = Schema.UUID.pipe(Schema.brand("SpendingId"));
 export type SpendingId = typeof SpendingId.Type;
 
 export class SpendingCreatePayload extends Schema.Class<SpendingCreatePayload>(
-  "SpendingCreateInput",
+	"SpendingCreateInput",
 )({
-  amount: Schema.Number.pipe(Schema.nonNaN()),
-  description: Schema.String.pipe(Schema.optional),
-  categoryId: CategoryId,
+	amount: Schema.Number.pipe(Schema.nonNaN()),
+	description: Schema.String.pipe(Schema.optional),
+	categoryId: CategoryId,
 }) {}
 
 export class SpendingUpdatePayload extends Schema.Class<SpendingUpdatePayload>(
-  "SpendingUpdateInput",
+	"SpendingUpdateInput",
 )({
-  id: SpendingId,
-  amount: Schema.Number.pipe(Schema.optional),
-  description: Schema.String.pipe(Schema.optional),
-  categoryId: CategoryId.pipe(Schema.optional),
+	id: SpendingId,
+	amount: Schema.Number.pipe(Schema.optional),
+	description: Schema.String.pipe(Schema.optional),
+	categoryId: CategoryId.pipe(Schema.optional),
 }) {}
 
 export class SpendingDeletePayload extends Schema.Class<SpendingDeletePayload>(
-  "SpendingDeleteInput",
+	"SpendingDeleteInput",
 )({
-  id: SpendingId,
+	id: SpendingId,
 }) {}
 
 export class Spending extends Schema.Class<Spending>("Spending")({
-  id: SpendingId,
-  amount: Schema.Number,
-  description: Schema.String,
-  category: Category,
-  createdAt: Schema.DateTimeUtc,
-  updatedAt: Schema.DateTimeUtc,
+	id: SpendingId,
+	amount: Schema.Number.pipe(Schema.nonNaN()),
+	description: Schema.String.pipe(Schema.NullOr),
+	category: Category,
+	createdAt: Schema.DateTimeUtc,
+	updatedAt: Schema.DateTimeUtc,
 }) {}
 
 export class SpendingNotFoundError extends Schema.TaggedError<SpendingNotFoundError>(
-  "SpendingNotFoundError",
+	"SpendingNotFoundError",
 )(
-  "SpendingNotFoundError",
-  { id: SpendingId },
-  HttpApiSchema.annotations({ status: 404 }),
+	"SpendingNotFoundError",
+	{ id: SpendingId },
+	HttpApiSchema.annotations({ status: 404 }),
 ) {
-  override get message() {
-    return `Spending with id ${this.id} not found`;
-  }
+	override get message() {
+		return `Spending with id ${this.id} not found`;
+	}
 }
 
 export class SpendingGroup extends HttpApiGroup.make("spending")
-  .add(HttpApiEndpoint.get("list", "/").addSuccess(Schema.Array(Spending)))
-  .add(
-    HttpApiEndpoint.post("create", "/")
-      .setPayload(SpendingCreatePayload)
-      .addSuccess(Spending),
-  )
-  .add(
-    HttpApiEndpoint.patch("update", "/")
-      .setPayload(SpendingUpdatePayload)
-      .addError(SpendingNotFoundError)
-      .addSuccess(Spending),
-  )
-  .add(
-    HttpApiEndpoint.del("delete", "/")
-      .setPayload(SpendingDeletePayload)
-      .addError(SpendingNotFoundError)
-      .addSuccess(SpendingId),
-  )
-  .prefix("/spending") {}
+	.add(HttpApiEndpoint.get("list", "/").addSuccess(Schema.Array(Spending)))
+	.add(
+		HttpApiEndpoint.post("create", "/")
+			.setPayload(SpendingCreatePayload)
+			.addSuccess(Spending),
+	)
+	.add(
+		HttpApiEndpoint.patch("update", "/")
+			.setPayload(SpendingUpdatePayload)
+			.addError(SpendingNotFoundError)
+			.addSuccess(Spending),
+	)
+	.add(
+		HttpApiEndpoint.del("delete", "/")
+			.setPayload(SpendingDeletePayload)
+			.addError(SpendingNotFoundError)
+			.addSuccess(SpendingId),
+	)
+	.prefix("/spending") {}
