@@ -1,5 +1,13 @@
 import { PgClient } from "@effect/sql-pg";
-import { Config, Duration, Effect, identity, Layer, Schedule } from "effect";
+import {
+	Config,
+	Duration,
+	Effect,
+	identity,
+	Layer,
+	Option,
+	Schedule,
+} from "effect";
 import * as String from "effect/String";
 
 export const pgConfig = {
@@ -32,11 +40,17 @@ export const pgConfig = {
 
 export const PgLive = Layer.unwrapEffect(
 	Effect.gen(function* () {
+		const dbDebugEnabled = (yield* Config.boolean("DB_DEBUG").pipe(
+			Config.option,
+		)).pipe(Option.getOrElse(() => false));
+
 		return PgClient.layer({
 			url: yield* Config.redacted("DATABASE_URL"),
 			...pgConfig,
-			debug: (_connection, query, parameters) =>
-				console.log({ query: unescape(query), parameters }),
+			debug: dbDebugEnabled
+				? (_connection, query, parameters) =>
+						console.log({ query: unescape(query), parameters })
+				: undefined,
 		});
 	}),
 ).pipe((self) =>

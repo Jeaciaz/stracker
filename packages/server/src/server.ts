@@ -4,10 +4,12 @@ import { Layer } from "effect";
 import { CategoryRpcLive } from "./domain/category/category-rpc-live";
 import { BunHttpServer, BunRuntime } from "@effect/platform-bun";
 import { SpendingRpcLive } from "./domain/spending/spending-rpc-live";
+import { UserRpcLive } from "./domain/user/user-rpc-live";
 
 const ApiLive = HttpLayerRouter.addHttpApi(DomainApi).pipe(
   Layer.provide(CategoryRpcLive),
   Layer.provide(SpendingRpcLive),
+  Layer.provide(UserRpcLive),
 );
 
 const AppRoutes = ApiLive.pipe(

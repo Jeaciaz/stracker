@@ -5,7 +5,7 @@
 - **Client dev**: `cd packages/client && npm run dev`
 - **Client build**: `cd packages/client && npm run build`
 - **Server dev**: `cd packages/server && bun --watch --env-file=../../.env src/server.ts`
-- **Database migrate**: `cd packages/database && bun --env-file=../../.env src/scripts/migrator.ts`
+- **Database migrate**: `bun migrate`
 - **No lint/test commands found** - run TypeScript compiler for type checking: `tsc --noEmit`
 
 ## Code Style Guidelines
@@ -20,14 +20,3 @@
 - **Error handling**: Effect for functional error handling, no try/catch in business logic
 - **Formatting**: No explicit formatter configured, follow existing code style
 - **Architecture**: Feature-based organization with lib/ui separation</content>
-<parameter name="filePath">/Users/sergeikniazev/dev/personal/stracker/AGENTS.md
-
-
-## btca
-
-Trigger: user says "use btca" (for codebase/docs questions).
-
-Run:
-- btca ask -t <tech> -q "<question>"
-
-Available <tech>: tailwindcss

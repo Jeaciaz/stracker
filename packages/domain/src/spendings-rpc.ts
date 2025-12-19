@@ -1,6 +1,6 @@
+import { HttpApiEndpoint, HttpApiGroup, HttpApiSchema } from "@effect/platform";
 import { Schema } from "effect";
 import { Category, CategoryId } from "./categories-rpc";
-import { HttpApiEndpoint, HttpApiGroup, HttpApiSchema } from "@effect/platform";
 
 export const SpendingId = Schema.UUID.pipe(Schema.brand("SpendingId"));
 export type SpendingId = typeof SpendingId.Type;

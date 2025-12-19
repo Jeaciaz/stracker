@@ -3,9 +3,12 @@
   "module": "index.ts",
   "type": "module",
   "private": true,
-  "workspaces": ["packages/*"],
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
-    "dev": "bun --filter '*' dev"
+    "dev": "bun --elide-lines 0 --filter '*' dev",
+    "migrate": "bun --elide-lines 0 --filter 'database' migrate"
   },
   "devDependencies": {
     "@types/bun": "latest"
